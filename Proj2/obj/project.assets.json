@@ -13,11 +13,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/c-sharp-hello-world/c-sharp-hello-world.csproj",
-      "projectName": "c-sharp-hello-world",
-      "projectPath": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/c-sharp-hello-world/c-sharp-hello-world.csproj",
+      "projectUniqueName": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj2/Proj2.csproj",
+      "projectName": "Proj2",
+      "projectPath": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj2/Proj2.csproj",
       "packagesPath": "/home/joshua/.nuget/packages/",
-      "outputPath": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/c-sharp-hello-world/obj/",
+      "outputPath": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj2/obj/",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "/home/joshua/.nuget/NuGet/NuGet.Config"
