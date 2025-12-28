@@ -1,0 +1,30 @@
+﻿boolean validCreditCard(string cardNum)
+{
+    byte numsFound = 0;
+    foreach (char letter in cardNum)
+    {
+        if (letter.IsDigit()) numsFound++;
+    }
+    return numsFound == 16; 
+}
+
+string creditCardNumber;
+// 1111 2222 3333 4444
+do{
+    Console.WriteLine("Please enter your credit card number.");
+    creditCardNumber = Console.ReadLine();
+} while(!validCreditCard(creditCardNumber));
+
+byte numsFound = 0;
+foreach (char letter in creditCardNumber)
+{
+    if (letter.IsDigit())
+    {
+        numsFound++;
+        letter = X
+    }
+    if (nums)
+}
+
+
+Console.WriteLine(creditCardNumber);
