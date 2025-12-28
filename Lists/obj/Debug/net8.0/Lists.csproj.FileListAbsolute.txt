@@ -1,0 +1,15 @@
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/bin/Debug/net8.0/Lists
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/bin/Debug/net8.0/Lists.deps.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/bin/Debug/net8.0/Lists.runtimeconfig.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/bin/Debug/net8.0/Lists.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/bin/Debug/net8.0/Lists.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.AssemblyInfoInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.AssemblyInfo.cs
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.csproj.CoreCompileInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.sourcelink.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/refint/Lists.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/Lists.genruntimeconfig.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Lists/obj/Debug/net8.0/ref/Lists.dll

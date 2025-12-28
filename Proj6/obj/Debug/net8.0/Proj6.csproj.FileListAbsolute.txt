@@ -1,0 +1,15 @@
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/bin/Debug/net8.0/Proj6
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/bin/Debug/net8.0/Proj6.deps.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/bin/Debug/net8.0/Proj6.runtimeconfig.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/bin/Debug/net8.0/Proj6.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/bin/Debug/net8.0/Proj6.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.AssemblyInfoInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.AssemblyInfo.cs
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.csproj.CoreCompileInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.sourcelink.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/refint/Proj6.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/Proj6.genruntimeconfig.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/Proj6/obj/Debug/net8.0/ref/Proj6.dll
