@@ -1,0 +1,23 @@
+namespace Classes // Allows classes under namespace to be imported to other files
+{
+    // Animal >> Dog >> Poodle
+    public class Student : Person
+    {
+        // instance field
+        private double _gpa;
+        //Stduent will inherit the non-private fields and methods of Person
+        public Student() {}
+
+        public Student(string firstName, string lastName, int age, double gpa) : base(firstName, lastName, age)
+        {
+            _gpa = gpa;
+        }
+
+        public double GetGPA() { return _gpa; }
+
+        public override string ToString()
+        {
+            return base.ToString() + " their gpa is " + _gpa;
+        }
+    }
+}

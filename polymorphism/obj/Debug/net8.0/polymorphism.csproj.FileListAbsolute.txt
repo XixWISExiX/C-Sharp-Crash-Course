@@ -1,0 +1,15 @@
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.AssemblyInfoInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.AssemblyInfo.cs
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.csproj.CoreCompileInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.sourcelink.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/bin/Debug/net8.0/polymorphism
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/bin/Debug/net8.0/polymorphism.deps.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/bin/Debug/net8.0/polymorphism.runtimeconfig.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/bin/Debug/net8.0/polymorphism.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/bin/Debug/net8.0/polymorphism.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/refint/polymorphism.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/polymorphism.genruntimeconfig.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/polymorphism/obj/Debug/net8.0/ref/polymorphism.dll
