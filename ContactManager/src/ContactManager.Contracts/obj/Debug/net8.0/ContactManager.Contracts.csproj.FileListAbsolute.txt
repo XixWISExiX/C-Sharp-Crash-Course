@@ -1,0 +1,12 @@
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/bin/Debug/net8.0/ContactManager.Contracts.deps.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/bin/Debug/net8.0/ContactManager.Contracts.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/bin/Debug/net8.0/ContactManager.Contracts.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.AssemblyInfoInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.AssemblyInfo.cs
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.csproj.CoreCompileInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.sourcelink.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/refint/ContactManager.Contracts.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ContactManager.Contracts.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Contracts/obj/Debug/net8.0/ref/ContactManager.Contracts.dll

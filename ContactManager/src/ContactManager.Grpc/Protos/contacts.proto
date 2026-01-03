@@ -1,0 +1,43 @@
+syntax = "proto3";
+
+option csharp_namespace = "ContactManager.Grpc.Contacts";
+package contacts;
+
+service ContactsService {
+  rpc GetContact (GetContactRequest) returns (ContactReply);
+  rpc UpsertContact (UpsertContactRequest) returns (ContactReply);
+  rpc ListContacts (ListContactsRequest) returns (ListContactsReply);
+  rpc DeleteContact (DeleteContactRequest) returns (DeleteContactReply);
+}
+
+message GetContactRequest {
+  string id = 1; // Guid as string
+}
+
+message UpsertContactRequest {
+  string id = 1;    // optional: empty means create
+  string name = 2;
+  string email = 3;
+  string phone = 4;
+}
+
+message ListContactsRequest {}
+
+message DeleteContactRequest {
+  string id = 1;
+}
+
+message ContactReply {
+  string id = 1;
+  string name = 2;
+  string email = 3;
+  string phone = 4;
+}
+
+message ListContactsReply {
+  repeated ContactReply contacts = 1;
+}
+
+message DeleteContactReply {
+  bool deleted = 1;
+}

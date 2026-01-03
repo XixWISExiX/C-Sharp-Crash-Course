@@ -1,0 +1,15 @@
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/bin/Debug/net8.0/ContactManager.Data.deps.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/bin/Debug/net8.0/ContactManager.Data.runtimeconfig.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/bin/Debug/net8.0/ContactManager.Data.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/bin/Debug/net8.0/ContactManager.Data.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.csproj.AssemblyReference.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.GeneratedMSBuildEditorConfig.editorconfig
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.AssemblyInfoInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.AssemblyInfo.cs
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.csproj.CoreCompileInputs.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.sourcelink.json
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/refint/ContactManager.Data.dll
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.pdb
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ContactManager.Data.genruntimeconfig.cache
+/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Data/obj/Debug/net8.0/ref/ContactManager.Data.dll

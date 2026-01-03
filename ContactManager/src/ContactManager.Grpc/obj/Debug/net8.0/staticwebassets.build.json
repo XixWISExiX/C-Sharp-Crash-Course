@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "LpiGpkR24rXNJEN+O7AZEj2MqLznoalFRMMdSOJNMBM=",
+  "Source": "ContactManager.Grpc",
+  "BasePath": "_content/ContactManager.Grpc",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}

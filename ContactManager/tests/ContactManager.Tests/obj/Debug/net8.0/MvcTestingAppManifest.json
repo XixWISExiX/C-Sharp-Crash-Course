@@ -1,0 +1,6 @@
+{
+  "ContactManager.Api, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/joshua\/Desktop\/MainFolder\/other\/c-sharp-crash-course\/ContactManager\/src\/ContactManager.Api",
+  "ContactManager.Contracts, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/joshua\/Desktop\/MainFolder\/other\/c-sharp-crash-course\/ContactManager\/src\/ContactManager.Contracts",
+  "ContactManager.Data, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/joshua\/Desktop\/MainFolder\/other\/c-sharp-crash-course\/ContactManager\/src\/ContactManager.Data",
+  "ContactManager.Grpc, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null": "\/home\/joshua\/Desktop\/MainFolder\/other\/c-sharp-crash-course\/ContactManager\/src\/ContactManager.Grpc"
+}

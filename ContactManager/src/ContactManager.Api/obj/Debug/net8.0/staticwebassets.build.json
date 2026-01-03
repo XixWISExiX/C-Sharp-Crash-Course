@@ -1,0 +1,23 @@
+{
+  "Version": 1,
+  "Hash": "cyQDumhKm1rpFJEchgRjk6XiB3NyyizWJqu2Jbr5g8M=",
+  "Source": "ContactManager.Api",
+  "BasePath": "_content/ContactManager.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [
+    {
+      "Identity": "/home/joshua/Desktop/MainFolder/other/c-sharp-crash-course/ContactManager/src/ContactManager.Grpc/ContactManager.Grpc.csproj",
+      "Version": 2,
+      "Source": "ContactManager.Grpc",
+      "GetPublishAssetsTargets": "ComputeReferencedStaticWebAssetsPublishManifest;GetCurrentProjectPublishStaticWebAssetItems",
+      "AdditionalPublishProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalPublishPropertiesToRemove": "WebPublishProfileFile;TargetFramework",
+      "GetBuildAssetsTargets": "GetCurrentProjectBuildStaticWebAssetItems",
+      "AdditionalBuildProperties": "Configuration=Debug;Platform=AnyCPU",
+      "AdditionalBuildPropertiesToRemove": "WebPublishProfileFile;TargetFramework"
+    }
+  ],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
