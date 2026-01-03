@@ -1,248 +1,122 @@
 # ContactManager
 
-## ContactManagerV1
+Two iterations live in this repo:
 
-### Commands to get app working
+- **ContactManagerV1**: initial scratch app (single project)
+- **ContactManagerV2**: service-architecture version (REST + JWT + gRPC + EF Core + tests + a few practical patterns)
 
-Build Project
+> **Prereqs**
+> - .NET SDK (net8.0)
+> - EF Core CLI tool (`dotnet-ef`) available
+>
+> If you don’t have it:
+> ```bash
+> dotnet tool install --global dotnet-ef
+> ```
+
+---
+
+## ContactManagerV2 (service architecture version)
+
+### What it is
+
+A basic CRUD contacts system with:
+
+- **ContactManager.Api**: public REST API + JWT auth
+- **ContactManager.Grpc**: internal gRPC service
+- **ContactManager.Data**: EF Core model + migrations
+- **SQLite**: persistence
+- **Unit + integration tests**: automated verification
+- **Design patterns**: Strategy / Decorator / Factory Method / Command (lightweight, practical)
+
+### Architecture overview
+```
+Client (curl/Swagger)
+       |
+       v
+ContactManager.Api (REST + JWT)
+       |
+       v
+ContactManager.Grpc (gRPC)
+       |
+       v
+SQLite (EF Core)
+```
+
+
+---
+
+## Quickstart (V2)
+
+### Build + test
+
 ```bash
 dotnet clean
 dotnet restore
 dotnet build
-```
-
-Run Tests and Project
-`Reminder: Testing folder needs to reference project folder`
-```bash
-dotnet test
-dotnet run --project contact_manager_proj/contact_manager_proj.csproj
-```
-
-Release Project
-```bash
-dotnet clean
-dotnet build -c Release
-dotnet publish contact_manager_proj/contact_manager_proj.csproj -c Release -r linux-x64 --self-contained false
-```
-
-Run Released Version
-```bash
-dotnet contact_manager_proj/bin/Release/net8.0/linux-x64/publish/contact_manager_proj.dll
-```
-
-## ContactManagerV2
-
-### Project Phases
-
-#### Phase 1 — REST CRUD + validation (Section 1 foundation)
-
-Goal: “I can create/update/delete/list contacts with proper validation.”
-
-Build:
-
-- Endpoints: `GET /contacts`, `GET /contacts/{id}`, `POST`, `PUT`, `DELETE`
-
-- Validation rules (start simple):
-
-  - name required
-
-  - email valid format
-
-  - phone length constraints
-
-Design pattern that naturally fits here
-
-- *Adapter* (lightweight mapping): map REST DTOs ↔ domain/entity cleanly (don’t leak EF entities over the wire).
-
-Done when
-
-- CRUD works in Swagger
-
-- Invalid requests return 400 with useful messages
-
-#### Phase 2 — EF Core + SQLite + migrations (Section 1 persistence)
-
-Goal: “Data actually persists.”
-
-Build:
-
-- `ContactDbContext` in `ContactManager.Data`
-
-- SQLite for speed (single file DB)
-
-- migrations (`dotnet ef migrations add InitialCreate`)
-
-- repository optional (don’t over-abstract too early)
-
-Pattern (optional)
-
-- *Facade*: a `ContactService` that hides DbContext details from controllers.
-
-Done when
-
-- You can delete the DB file, run migrations, and everything still works
-
-#### Phase 3 — Auth with JWT (Section 1 auth)
-
-Goal: “Endpoints require auth.”
-
-Build:
-
-- `/auth/login` endpoint issues JWT (hardcoded user is fine for now)
-
-- Protect CRUD endpoints with `[Authorize]`
-
-- Roles optional (admin vs user)
-
-Pattern
-
-- *Proxy* / *Decorator-ish* (practical): a wrapper service that enforces auth/permissions before calling the core service logic (or use policies directly—both are fine).
-
-Done when
-
-- Without a token: 401
-
-- With token: CRUD works
-
-#### Phase 4 — Tests (this ties everything together)
-
-Goal: “I can prove it works automatically.”
-
-Build:
-
-- Unit tests: validation + service logic
-
-- Integration tests:
-
-  - spin up API in-memory (`WebApplicationFactory`)
-  
-  - use SQLite in-memory or temp DB
-  
-  - test auth + one CRUD flow end-to-end
-
-Pattern
-
-- Strategy can show up as different validation strategies, but don’t force it yet.
-
-Done when
-
-- `dotnet test` runs green and covers core flows
-
-#### Phase 5 — Add gRPC (Section 2)
-
-Goal: “Internal comms via gRPC, REST remains public.”
-
-Build:
-
-- Define `contacts.proto`
-
-- Start with unary calls:
-
-  - `GetContact`
-  
-  - `UpsertContact`
-
-- Host `ContactManager.Grpc` as its own service (separate process)
-
-- `ContactManager.Api` calls gRPC internally (or vice versa)
-
-Features to learn
-
-- deadlines/timeouts
-
-- interceptors (logging + timing)
-
-- retry policy (optional)
-
-Pattern
-
-- *Decorator*: interceptor is basically a decorator for RPC calls.
-
-- *Facade*: REST API acts as facade over internal gRPC.
-
-Done when
-
-- REST endpoint calls gRPC service successfully
-
-- You can set a deadline and see it fail fast if exceeded
-
-#### Phase 6 — “Real” Design Patterns (Section 3, but only the useful ones)
-
-Pick 3–5 patterns that actually show up in your codebase:
-
-Most valuable here
-
-- *Strategy*: search/filter behavior (e.g., “startsWith”, “contains”, “fuzzy”) or sorting policies
-
-- *Decorator*: caching wrapper around IContactService (in-memory cache for GetContact)
-
-- *Factory Method*: choose a storage provider (SQLite vs SQL Server) via config
-
-- *Command*: background worker processes “sync contact” jobs from a queue (even in-memory channel)
-
-Skip Abstract Factory/Builder unless you need them.
-
-Done when
-
-- patterns improve clarity, not complexity
-
-- you can point to them and explain why they exist
-
-### Commands
-
-Build Project
-```bash
-dotnet clean
-dotnet restore
-dotnet build
-```
-
-Run Tests (test implements a lot of the curl commands in the section below)
-`Reminder: All these project reference one another in different ways.`
-```bash
 dotnet test
 ```
 
-#### API + GRPC
+## Database (V2): migrations + updates
 
-Build base DB schema called InitialCreate
+### Create the initial migration (only once)
+
 ```bash
 dotnet ef migrations add InitialCreate \
   --project src/ContactManager.Data/ContactManager.Data.csproj \
   --startup-project src/ContactManager.Api/ContactManager.Api.csproj
 ```
-  
-Build DB in Api
+
+### Apply migrations for API startup
+
 ```bash
 dotnet ef database update \
   --project src/ContactManager.Data/ContactManager.Data.csproj \
   --startup-project src/ContactManager.Api/ContactManager.Api.csproj
 ```
 
-Build DB in Grpc
+### Apply migrations for gRPC startup
+
 ```bash
 dotnet ef database update \
   --project src/ContactManager.Data/ContactManager.Data.csproj \
   --startup-project src/ContactManager.Grpc/ContactManager.Grpc.csproj
 ```
 
-Start GRPC Service
+## Run services (V2)
+
+### Terminal 1 — Start gRPC service
+
 ```bash
 dotnet run --project src/ContactManager.Grpc/ContactManager.Grpc.csproj
 ```
+By default gRPC is typically on http://localhost:5055 unless you configured it differently.
 
-Start API Service (must enter in port number from GRPC Service)
+### Terminal 2 — Start API service (points to gRPC)
+
 ```bash
-dotnet run --project src/ContactManager.Api/ContactManager.Api.csproj --grpc_link http://localhost:{}
+GRPC_URL="http://localhost:5055"
+dotnet run --project src/ContactManager.Api/ContactManager.Api.csproj --grpc_link "$GRPC_URL"
+```
+The API resolves gRPC address in this order:
+1. CLI --grpc_link
+2. config: Grpc:ContactsUrl
+3. fallback: http://localhost:5055
+
+## Manual API testing (V2) with curl
+
+Set your API base URL (use the port your API prints on startup):
+```bash
+BASE="http://localhost:5000"
 ```
 
-Confirm No Token Case (must enter in port number from API Service)
+### 1) No token → should be 401
 ```bash
-BASE="http://localhost:{}"
 curl -i "$BASE/contacts"
 ```
 
-Login and get a token
+
+### 2) Login → get JWT
 ```bash
 TOKEN=$(curl -s -X POST "$BASE/auth/login" \
   -H "Content-Type: application/json" \
@@ -252,7 +126,7 @@ TOKEN=$(curl -s -X POST "$BASE/auth/login" \
 echo "TOKEN=$TOKEN"
 ```
 
-Create a contact (POST)
+### 3) Create a contact (POST)
 ```bash
 CREATE_RES=$(curl -s -i -X POST "$BASE/contacts" \
   -H "Authorization: Bearer $TOKEN" \
@@ -262,23 +136,23 @@ CREATE_RES=$(curl -s -i -X POST "$BASE/contacts" \
 echo "$CREATE_RES"
 ```
 
-Extract Example ID
+### 4) Extract the created ID
 ```bash
 ID=$(echo "$CREATE_RES" | tail -n 1 | python3 -c "import sys,json; print(json.load(sys.stdin)['id'])")
 echo "ID=$ID"
 ```
 
-List All Contacts (GET)
+### 5) List all contacts (GET)
 ```bash
 curl -s -i "$BASE/contacts" -H "Authorization: Bearer $TOKEN"
 ```
 
-List Contact (GET)
+### 6) Get one contact (GET)
 ```bash
 curl -s -i "$BASE/contacts/$ID" -H "Authorization: Bearer $TOKEN"
 ```
 
-Update (PUT)
+### 7) Update (PUT)
 ```bash
 curl -s -i -X PUT "$BASE/contacts/$ID" \
   -H "Authorization: Bearer $TOKEN" \
@@ -286,7 +160,95 @@ curl -s -i -X PUT "$BASE/contacts/$ID" \
   -d '{"name":"Joshua Wiseman","email":"josh@example.com","phone":"1234567890"}'
 ```
 
-Delete (DELETE)
+### 8) Delete (DELETE)
 ```bash
-curl -s -i -X DELETE "$BASE/contacts/$ID" -H "Authorization: Bearer $TOKEN"
+curl -s -i -X DELETE "$BASE/contacts/$ID" \
+  -H "Authorization: Bearer $TOKEN"
 ```
+
+## Project phases (V2)
+
+### Phase 1 — REST CRUD + validation
+- Endpoints: `GET /contacts`, `GET /contacts/{id}`, `POST`, `PUT`, `DELETE`
+- Validation: name required, email format, phone length constraints
+- Pattern: *Adapter* (DTO ↔ entity mapping)
+
+Done when:
+- CRUD works in Swagger
+- invalid requests return 400 with helpful messages
+
+### Phase 2 — EF Core + SQLite + migrations
+- `ContactDbContext` in `ContactManager.Data`
+- SQLite file DB
+- migrations + database update
+- Pattern: *Facade* (`ContactService` hides DbContext details)
+
+Done when:
+- delete DB file → apply migrations → app works again
+
+### Phase 3 — Auth with JWT
+- `/auth/login` issues JWT (hardcoded user OK)
+- CRUD protected with `[Authorize]`
+- optional roles/policies
+- Pattern: *Proxy/Decorator-ish* enforcement (or policies)
+
+Done when:
+- no token → 401
+- token → CRUD works
+
+### Phase 4 — Tests
+- unit tests: validation + service logic
+- integration tests: `WebApplicationFactory`, SQLite in-memory/temp DB, auth + CRUD flow
+
+Done when:
+- `dotnet test` is green and covers core flows
+
+### Phase 5 — Add gRPC
+- `contacts.proto`
+- unary calls like `GetContact`, `UpsertContact`, `ListContacts` (and delete if implemented)
+- gRPC hosted as separate service
+- REST calls gRPC internally
+- Patterns: *Decorator* (interceptors), *Facade* (REST over gRPC)
+
+Done when:
+- REST calls gRPC successfully
+- deadlines/timeouts fail fast as expected
+
+### Phase 6 — Practical patterns
+Patterns used where they improve clarity (not ceremony):
+- *Strategy*: search/filter policies
+- *Decorator*: caching wrapper around contacts client/service
+- *Factory Method*: choose storage provider via config
+- *Command*: worker/job processing (optional)
+
+Done when:
+- patterns reduce complexity / improve maintainability
+- you can explain why each exists
+
+## ContactManagerV1 (initial scratch app)
+
+### Build + run
+```bash
+dotnet clean
+dotnet restore
+dotnet build
+dotnet run --project contact_manager_proj/contact_manager_proj.csproj
+```
+
+### Tests
+```bash
+dotnet test
+```
+
+### Release / publish
+```bash
+dotnet clean
+dotnet build -c Release
+dotnet publish contact_manager_proj/contact_manager_proj.csproj -c Release -r linux-x64 --self-contained false
+```
+
+Run the published output:
+```bash
+dotnet contact_manager_proj/bin/Release/net8.0/linux-x64/publish/contact_manager_proj.dll
+```
+
