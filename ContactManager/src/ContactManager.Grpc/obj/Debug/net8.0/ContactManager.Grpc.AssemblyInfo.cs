@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("ContactManager.Grpc")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+d84f93985680f40306350176cba8d62bc76ec772")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+f846b636095e9b19cb3d5f77ea65da8bc9228043")]
 [assembly: System.Reflection.AssemblyProductAttribute("ContactManager.Grpc")]
 [assembly: System.Reflection.AssemblyTitleAttribute("ContactManager.Grpc")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

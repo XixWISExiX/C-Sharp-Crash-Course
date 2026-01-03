@@ -3,17 +3,23 @@ using System.Net.Http.Headers;
 using System.Net.Http.Json;
 using ContactManager.Contracts.Contacts;
 using ContactManager.Tests.Infrastructure;
-//using Xunit;
+using Xunit;
 
 namespace ContactManager.Tests.Integration;
 
-public sealed class AuthAndCrudFlowTests : IClassFixture<CustomWebApplicationFactory>
+public sealed class AuthAndCrudFlowTests : IClassFixture<GrpcServerFixture>, IDisposable
 {
+    private readonly CustomWebApplicationFactory _factory;
     private readonly HttpClient _client;
 
-    public AuthAndCrudFlowTests(CustomWebApplicationFactory factory)
+    public AuthAndCrudFlowTests(GrpcServerFixture grpc)
     {
-        _client = factory.CreateClient();
+        // Create API factory that points to the real gRPC process URL
+        _factory = new CustomWebApplicationFactory(grpc.Url);
+        _client = _factory.CreateClient(new Microsoft.AspNetCore.Mvc.Testing.WebApplicationFactoryClientOptions
+        {
+            AllowAutoRedirect = false
+        });
     }
 
     [Fact]
@@ -66,6 +72,12 @@ public sealed class AuthAndCrudFlowTests : IClassFixture<CustomWebApplicationFac
         // 6) Confirm gone
         var getAfterDel = await _client.GetAsync($"/contacts/{created.Id}");
         Assert.Equal(HttpStatusCode.NotFound, getAfterDel.StatusCode);
+    }
+
+    public void Dispose()
+    {
+        _client.Dispose();
+        _factory.Dispose();
     }
 
     private sealed record LoginResponse(string AccessToken, string TokenType, int ExpiresInSeconds);

@@ -166,6 +166,28 @@ Done when
 
 - You can set a deadline and see it fail fast if exceeded
 
+#### Phase 6 — “Real” Design Patterns (Section 3, but only the useful ones)
+
+Pick 3–5 patterns that actually show up in your codebase:
+
+Most valuable here
+
+- *Strategy*: search/filter behavior (e.g., “startsWith”, “contains”, “fuzzy”) or sorting policies
+
+- *Decorator*: caching wrapper around IContactService (in-memory cache for GetContact)
+
+- *Factory Method*: choose a storage provider (SQLite vs SQL Server) via config
+
+- *Command*: background worker processes “sync contact” jobs from a queue (even in-memory channel)
+
+Skip Abstract Factory/Builder unless you need them.
+
+Done when
+
+- patterns improve clarity, not complexity
+
+- you can point to them and explain why they exist
+
 ### Commands
 
 Build Project
@@ -175,13 +197,13 @@ dotnet restore
 dotnet build
 ```
 
-Run Tests
+Run Tests (test implements a lot of the curl commands in the section below)
 `Reminder: All these project reference one another in different ways.`
 ```bash
 dotnet test
 ```
 
-#### API
+#### API + GRPC
 
 Build base DB schema called InitialCreate
 ```bash
@@ -190,22 +212,33 @@ dotnet ef migrations add InitialCreate \
   --startup-project src/ContactManager.Api/ContactManager.Api.csproj
 ```
   
-Build DB
+Build DB in Api
 ```bash
 dotnet ef database update \
   --project src/ContactManager.Data/ContactManager.Data.csproj \
   --startup-project src/ContactManager.Api/ContactManager.Api.csproj
 ```
 
-
-Run Project
+Build DB in Grpc
 ```bash
-dotnet run --project src/ContactManager.Api/ContactManager.Api.csproj
+dotnet ef database update \
+  --project src/ContactManager.Data/ContactManager.Data.csproj \
+  --startup-project src/ContactManager.Grpc/ContactManager.Grpc.csproj
 ```
 
-Confirm No Token Case
+Start GRPC Service
 ```bash
-BASE="http://localhost:5249"
+dotnet run --project src/ContactManager.Grpc/ContactManager.Grpc.csproj
+```
+
+Start API Service (must enter in port number from GRPC Service)
+```bash
+dotnet run --project src/ContactManager.Api/ContactManager.Api.csproj --grpc_link http://localhost:{}
+```
+
+Confirm No Token Case (must enter in port number from API Service)
+```bash
+BASE="http://localhost:{}"
 curl -i "$BASE/contacts"
 ```
 
@@ -256,23 +289,4 @@ curl -s -i -X PUT "$BASE/contacts/$ID" \
 Delete (DELETE)
 ```bash
 curl -s -i -X DELETE "$BASE/contacts/$ID" -H "Authorization: Bearer $TOKEN"
-```
-
-#### GRPC
-
-Build DB
-```bash
-dotnet ef database update \
-  --project src/ContactManager.Data/ContactManager.Data.csproj \
-  --startup-project src/ContactManager.Grpc/ContactManager.Grpc.csproj
-```
-
-Start GRPC Service
-```bash
-dotnet run --project src/ContactManager.Grpc/ContactManager.Grpc.csproj --urls http://localhost:5055
-```
-
-Then Access Api that uses GRPC
-```bash
-dotnet run --project src/ContactManager.Api/ContactManager.Api.csproj
 ```

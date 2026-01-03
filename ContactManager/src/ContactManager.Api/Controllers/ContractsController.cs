@@ -2,6 +2,7 @@ using ContactManager.Contracts.Contacts;
 using ContactManager.Grpc.Contacts; // Generated from contacts.proto
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using ContactManager.Api.Contacts.Query;
 using RpcException = global::Grpc.Core.RpcException;
 using GrpcStatusCode = global::Grpc.Core.StatusCode;
 
@@ -94,22 +95,31 @@ public sealed class ContactsController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<List<ContactDto>>> GetAll(CancellationToken ct)
+    public async Task<ActionResult<List<ContactDto>>> GetAll(
+        [FromQuery] string? q,
+        [FromQuery] string? mode,
+        [FromServices] IEnumerable<IContactQueryStrategy> strategies,
+        CancellationToken ct)
     {
-        var reply = await _grpc.ListContactsAsync(
-            new ListContactsRequest(),
-            deadline: DateTime.UtcNow.AddSeconds(2),
-            cancellationToken: ct);
+        var reply = await _grpc.ListContactsAsync(new ListContactsRequest(), cancellationToken: ct);
 
-        var list = reply.Contacts.Select(c => new ContactDto(
-            Guid.Parse(c.Id),
-            c.Name,
-            string.IsNullOrWhiteSpace(c.Email) ? null : c.Email,
-            string.IsNullOrWhiteSpace(c.Phone) ? null : c.Phone
+        var list = reply.Contacts.Select(r => new ContactDto(
+            Guid.Parse(r.Id), r.Name,
+            string.IsNullOrWhiteSpace(r.Email) ? null : r.Email,
+            string.IsNullOrWhiteSpace(r.Phone) ? null : r.Phone
         )).ToList();
+
+        if (!string.IsNullOrWhiteSpace(q) && !string.IsNullOrWhiteSpace(mode))
+        {
+            var strat = strategies.FirstOrDefault(s => s.Name.Equals(mode, StringComparison.OrdinalIgnoreCase));
+            if (strat is null) return BadRequest(new { message = $"Unknown mode '{mode}'." });
+
+            list = strat.Apply(list, q).ToList();
+        }
 
         return Ok(list);
     }
+
 
     [HttpDelete("{id:guid}")]
     public async Task<IActionResult> Delete(Guid id, CancellationToken ct)
